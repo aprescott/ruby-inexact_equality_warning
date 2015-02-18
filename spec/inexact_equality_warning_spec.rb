@@ -12,10 +12,12 @@ end
 RSpec.describe EqualityWarning do
   def expect_warning(x, y)
     expect(capturing_stderr { x == y }).to include("WARNING: Testing for equality with inexact floats is ill-advised, when comparing #{x} and #{y} (#{__FILE__}:#{__LINE__}:in `block in #{__method__}'")
+    expect(capturing_stderr { x != y }).to include("WARNING: Testing for equality with inexact floats is ill-advised, when comparing #{x} and #{y} (#{__FILE__}:#{__LINE__}:in `!='")
   end
 
   def expect_no_warning(x, y)
     expect(capturing_stderr { x == y }).to_not include("WARNING")
+    expect(capturing_stderr { x != y }).to_not include("WARNING")
   end
 
   [
