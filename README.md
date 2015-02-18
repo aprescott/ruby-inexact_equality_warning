@@ -4,3 +4,12 @@ x == 0.0
 # WARNING: Testing for equality between inexact floats is ill-advised, when comparing -2.7755575615628914e-17 and 0 (/path/to/file.rb:123)
 # => false
 ```
+
+
+### Installation
+
+Gemfile:
+
+```ruby
+gem "inexact_equality_warning"
+```
