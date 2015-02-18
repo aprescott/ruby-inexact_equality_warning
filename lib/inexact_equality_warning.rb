@@ -7,4 +7,6 @@ module EqualityWarning
 end
 
 # classes that are leaf nodes of all subclasses of Numeric
-[Fixnum, Float, Bignum, Rational, Complex].each { |klass| klass.prepend(EqualityWarning) }
+[Fixnum, Float, Bignum, Rational, Complex].each do |klass|
+  klass.class_eval { prepend(EqualityWarning) }
+end
