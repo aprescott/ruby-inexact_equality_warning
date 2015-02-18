@@ -6,10 +6,14 @@ x == 0.0
 ```
 
 
-### Installation
+### Installation and usage
 
 Gemfile:
 
 ```ruby
 gem "inexact_equality_warning"
+```
+
+```ruby
+require "inexact_equality_warning"
 ```
