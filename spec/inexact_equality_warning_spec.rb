@@ -19,23 +19,41 @@ RSpec.describe EqualityWarning do
   end
 
   [
-    1.0, 1.0,
-    1.0, 1.0,
     1.0, 1,
+    1.0, 2**1000,
+    1.0, Rational(1, 2),
+    1.0, Complex(1, 2),
     1, 1.0,
-    1.0, Complex(1, 0),
-    1.0, Complex(0, 2),
-    1.0, 2**1000, # Bignum
+    Rational(1, 2), 1.0,
+    2**1000, 1.0,
+    Complex(1, 2), 1.0,
   ].each_slice(2) do |x, y|
     specify { expect_warning(x, y) }
   end
 
   [
+    1, 2**1000,
+    1, Rational(1, 2),
+    1, Complex(1, 2),
+    1, "anything",
+    2**1000, 1,
+    2**1000, Rational(1, 2),
+    2**1000, Complex(1, 2),
+    2**1000, "anything",
+    Rational(1, 2), 1,
+    Rational(1, 2), 2**1000,
+    Rational(1, 2), Complex(1, 2),
+    Rational(1, 2), "anything",
+    Complex(1, 2), 1,
+    Complex(1, 2), 2**1000,
+    Complex(1, 2), Rational(1, 2),
+    Complex(1, 2), "anything",
+    "anything", 1,
+    "anything", 2**1000,
+    "anything", Rational(1, 2),
+    "anything", Complex(1, 2),
+    1.0, "anything",
     "anything", 1.0,
-    1, 1,
-    Complex(1, 0), Complex(0, 2),
-    "anything", "anything",
-    2**1000, 2**1000, # Bignum
   ].each_slice(2) do |x, y|
     specify { expect_no_warning(x, y) }
   end
@@ -50,3 +68,21 @@ RSpec.describe EqualityWarning do
     expect(numeric_classes.reject { |klass| numeric_classes.any? { |other_class| other_class < klass } }).to eq(prepended_classes)
   end
 end
+
+=begin
+# test case permutations generation:
+
+test_values = {
+  Fixnum => "1",
+  Float => "1.0",
+  Bignum => "2**1000",
+  Rational => "Rational(1, 2)",
+  Complex => "Complex(1, 2)",
+  String => %~"anything"~
+}
+[Float, Fixnum, Bignum, Rational, Complex, String].permutation(2).to_a.map do |x, y|
+  [test_values[x], test_values[y]]
+end.each do |x, y|
+  puts "#{x}, #{y},"
+end
+=end
