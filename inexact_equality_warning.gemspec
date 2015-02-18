@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name          = "inexact_equality_warning"
-  gem.version       = "0.0.2"
+  gem.version       = "0.0.3"
   gem.authors       = ["Adam Prescott"]
   gem.email         = ["adam@aprescott.com"]
   gem.description   = "Warn when comparing floats for equality."
