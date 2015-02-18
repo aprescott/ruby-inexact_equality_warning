@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/aprescott/ruby-inexact_equality_warning.svg?branch=master)](https://travis-ci.org/aprescott/ruby-inexact_equality_warning)
+
 ```ruby
 x = 1.0 - 0.9 - 0.1
 x == 0.0
